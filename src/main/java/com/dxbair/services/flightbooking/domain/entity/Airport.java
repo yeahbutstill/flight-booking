@@ -1,14 +1,22 @@
 package com.dxbair.services.flightbooking.domain.entity;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotEmpty;
 
 @Entity
 public class Airport {
 
 	@Id
 	private String iataCode;
+
+	@NotEmpty
+	@NotBlank
 	private String name;
+
+	@NotEmpty
+	@NotBlank
 	private String countryIsoCode;
 
 	public Airport() {

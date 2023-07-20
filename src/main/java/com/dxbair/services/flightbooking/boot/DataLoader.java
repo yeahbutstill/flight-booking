@@ -1,14 +1,15 @@
 package com.dxbair.services.flightbooking.boot;
 
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Paths;
-import java.util.function.Function;
-import java.util.stream.Stream;
-
+import com.dxbair.services.flightbooking.booking.BookingService;
+import com.dxbair.services.flightbooking.domain.entity.Airport;
+import com.dxbair.services.flightbooking.domain.entity.Flight;
+import com.dxbair.services.flightbooking.domain.entity.Passenger;
+import com.dxbair.services.flightbooking.domain.repo.AirportRepository;
+import com.dxbair.services.flightbooking.domain.repo.FlightRepository;
+import com.dxbair.services.flightbooking.domain.repo.PassengerRepository;
+import com.dxbair.services.flightbooking.domain.util.DateUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.core.annotation.Order;
@@ -18,14 +19,11 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.dxbair.services.flightbooking.booking.BookingService;
-import com.dxbair.services.flightbooking.domain.entity.Airport;
-import com.dxbair.services.flightbooking.domain.entity.Flight;
-import com.dxbair.services.flightbooking.domain.entity.Passenger;
-import com.dxbair.services.flightbooking.domain.repo.AirportRepository;
-import com.dxbair.services.flightbooking.domain.repo.FlightRepository;
-import com.dxbair.services.flightbooking.domain.repo.PassengerRepository;
-import com.dxbair.services.flightbooking.domain.util.DateUtil;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.util.function.Function;
+import java.util.stream.Stream;
 
 @Component
 @Transactional
@@ -35,11 +33,14 @@ public class DataLoader {
 	private static final String airportsFile = "/data/airports_with_iata_code.csv";
 	private static final String flightsFile = "/data/flights.csv";
 
-	@Autowired
-	private ResourceLoader resourceLoader;
+	private final ResourceLoader resourceLoader;
 
-	@Autowired
-	private BookingService bookingService;
+	private final BookingService bookingService;
+
+	public DataLoader(ResourceLoader resourceLoader, BookingService bookingService) {
+		this.resourceLoader = resourceLoader;
+		this.bookingService = bookingService;
+	}
 
 	@Bean
 	@Order(1)

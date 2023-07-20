@@ -1,20 +1,21 @@
 package com.dxbair.services.flightbooking.airport;
 
-import java.util.List;
-
-import org.springframework.beans.factory.annotation.Autowired;
+import com.dxbair.services.flightbooking.domain.entity.Airport;
+import com.dxbair.services.flightbooking.domain.repo.AirportRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.dxbair.services.flightbooking.domain.entity.Airport;
-import com.dxbair.services.flightbooking.domain.repo.AirportRepository;
+import java.util.List;
 
 @Service
 @Transactional(readOnly = true)
 public class AirportServiceImpl implements AirportService {
 
-	@Autowired
-	private AirportRepository airportRepo;
+	private final AirportRepository airportRepo;
+
+	public AirportServiceImpl(AirportRepository airportRepo) {
+		this.airportRepo = airportRepo;
+	}
 
 	@Override
 	public Airport getAirportById(String airportId) {

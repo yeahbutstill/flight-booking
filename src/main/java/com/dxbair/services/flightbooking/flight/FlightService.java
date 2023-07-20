@@ -1,8 +1,8 @@
 package com.dxbair.services.flightbooking.flight;
 
-import java.util.List;
-
 import com.dxbair.services.flightbooking.domain.entity.Flight;
+
+import java.util.List;
 
 public interface FlightService {
 	

@@ -1,18 +1,14 @@
 package com.dxbair.services.flightbooking.domain.entity;
 
-import java.time.LocalDateTime;
-import java.util.Set;
-
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.ManyToMany;
-
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotEmpty;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Parameter;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import java.time.LocalDateTime;
+import java.util.Set;
 
 @Entity
 public class Flight {
@@ -23,8 +19,15 @@ public class Flight {
 		parameters = @Parameter(name = "prefix", value = "FL"), 
 		strategy = "com.dxbair.services.flightbooking.domain.util.StringSequenceIdGenerator")
 	private String id;
+
+	@NotEmpty
+	@NotBlank
 	private String departure;
+
+	@NotEmpty
+	@NotBlank
 	private String arrival;
+
 	private LocalDateTime departureDate;
 	private LocalDateTime arrivalDate;
 	

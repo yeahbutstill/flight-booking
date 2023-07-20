@@ -1,40 +1,39 @@
 package com.dxbair.services.flightbooking.booking;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Random;
-import java.util.Set;
-import java.util.stream.Collectors;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-import org.springframework.util.CollectionUtils;
-
 import com.dxbair.services.flightbooking.domain.entity.Flight;
 import com.dxbair.services.flightbooking.domain.entity.FlightBooking;
 import com.dxbair.services.flightbooking.domain.entity.Passenger;
 import com.dxbair.services.flightbooking.domain.repo.FlightBookingRepository;
 import com.dxbair.services.flightbooking.domain.repo.FlightRepository;
 import com.dxbair.services.flightbooking.domain.repo.PassengerRepository;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.CollectionUtils;
+
+import java.util.HashSet;
+import java.util.List;
+import java.util.Random;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 @Service
 @Transactional(readOnly = true)
 public class BookingServiceImpl implements BookingService {
 	private static final Logger logger = LoggerFactory.getLogger(BookingServiceImpl.class);
 
-	@Autowired
-	private FlightBookingRepository bookingRepo;
+	private final FlightBookingRepository bookingRepo;
 
-	@Autowired
-	private PassengerRepository passengerRepo;
+	private final PassengerRepository passengerRepo;
 
-	@Autowired
-	private FlightRepository flightRepo;
+	private final FlightRepository flightRepo;
+
+	public BookingServiceImpl(FlightBookingRepository bookingRepo, PassengerRepository passengerRepo, FlightRepository flightRepo) {
+		this.bookingRepo = bookingRepo;
+		this.passengerRepo = passengerRepo;
+		this.flightRepo = flightRepo;
+	}
 
 	@Override
 	public FlightBooking getBooking(String bookingId) {

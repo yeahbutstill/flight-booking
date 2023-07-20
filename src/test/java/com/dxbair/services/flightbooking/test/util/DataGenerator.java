@@ -2,7 +2,6 @@ package com.dxbair.services.flightbooking.test.util;
 
 import java.io.IOException;
 import java.net.URI;
-import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;

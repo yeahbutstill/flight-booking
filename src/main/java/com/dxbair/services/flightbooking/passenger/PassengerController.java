@@ -1,26 +1,23 @@
 package com.dxbair.services.flightbooking.passenger;
 
-import java.util.List;
-
+import com.dxbair.services.flightbooking.domain.entity.Passenger;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
-import com.dxbair.services.flightbooking.domain.entity.Passenger;
+import java.util.List;
 
 @RestController
 @RequestMapping("passengers")
 public class PassengerController {
 
-	@Autowired
-	private PassengerService passengerService;
+	private final PassengerService passengerService;
 
 	private static final Logger logger = LoggerFactory.getLogger(PassengerController.class);
+
+	public PassengerController(PassengerService passengerService) {
+		this.passengerService = passengerService;
+	}
 
 	@GetMapping
 	public @ResponseBody List<Passenger> getAllPassengers() {

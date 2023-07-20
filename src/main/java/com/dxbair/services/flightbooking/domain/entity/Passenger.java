@@ -1,12 +1,9 @@
 package com.dxbair.services.flightbooking.domain.entity;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
-import javax.persistence.UniqueConstraint;
-
+import jakarta.persistence.*;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotEmpty;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Parameter;
 
@@ -20,11 +17,18 @@ public class Passenger {
       parameters = @Parameter(name = "prefix", value = "PS"), 
       strategy = "com.dxbair.services.flightbooking.domain.util.StringSequenceIdGenerator")
 	private String id;
-	
-	@Column
+
+	@NotEmpty
+	@NotBlank
 	private String firstName;
+
+	@NotEmpty
+	@NotBlank
 	private String lastName;
-	
+
+	@NotEmpty
+	@NotBlank
+	@Email
 	private String email;
 
 	public Passenger() {

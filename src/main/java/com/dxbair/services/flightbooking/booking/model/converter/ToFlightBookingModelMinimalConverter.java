@@ -1,12 +1,11 @@
 package com.dxbair.services.flightbooking.booking.model.converter;
 
-import org.springframework.core.convert.converter.Converter;
-import org.springframework.stereotype.Component;
-import org.springframework.util.CollectionUtils;
-
 import com.dxbair.services.flightbooking.booking.model.FlightBookingSummaryModel;
 import com.dxbair.services.flightbooking.domain.entity.Flight;
 import com.dxbair.services.flightbooking.domain.entity.FlightBooking;
+import org.springframework.core.convert.converter.Converter;
+import org.springframework.stereotype.Component;
+import org.springframework.util.CollectionUtils;
 
 @Component
 public class ToFlightBookingModelMinimalConverter implements Converter<FlightBooking, FlightBookingSummaryModel> {

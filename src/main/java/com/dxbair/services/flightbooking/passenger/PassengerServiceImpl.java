@@ -1,20 +1,21 @@
 package com.dxbair.services.flightbooking.passenger;
 
-import java.util.List;
-
-import org.springframework.beans.factory.annotation.Autowired;
+import com.dxbair.services.flightbooking.domain.entity.Passenger;
+import com.dxbair.services.flightbooking.domain.repo.PassengerRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.dxbair.services.flightbooking.domain.entity.Passenger;
-import com.dxbair.services.flightbooking.domain.repo.PassengerRepository;
+import java.util.List;
 
 @Service
 @Transactional(readOnly = true)
 public class PassengerServiceImpl implements PassengerService {
 
-	@Autowired
-	private PassengerRepository passengerRepo;
+	private final PassengerRepository passengerRepo;
+
+	public PassengerServiceImpl(PassengerRepository passengerRepo) {
+		this.passengerRepo = passengerRepo;
+	}
 
 	@Override
 	public Passenger getPassengerById(String passengerId) {

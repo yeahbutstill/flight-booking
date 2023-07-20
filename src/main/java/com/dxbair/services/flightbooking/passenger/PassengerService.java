@@ -1,8 +1,8 @@
 package com.dxbair.services.flightbooking.passenger;
 
-import java.util.List;
-
 import com.dxbair.services.flightbooking.domain.entity.Passenger;
+
+import java.util.List;
 
 public interface PassengerService {
 	
